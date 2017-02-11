@@ -8,21 +8,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.tylerperdue.concertapplication.RegisterView">
+    tools:context="com.example.tylerperdue.concertapplication.Registration">
 
     <TextView
-        android:text="Create New Account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:id="@+id/textView2"
-        android:textColor="@android:color/black"
-        android:textSize="36sp" />
-
-    <TextView
-        android:text="Email Address"
+        android:text="Username: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
@@ -41,54 +30,77 @@
         android:layout_below="@+id/textView3"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3"
-        android:id="@+id/editText" />
+        android:id="@+id/usernameRegisterTxt"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:text="Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
+        android:layout_below="@+id/usernameRegisterTxt"
+        android:layout_alignLeft="@+id/usernameRegisterTxt"
+        android:layout_alignStart="@+id/usernameRegisterTxt"
         android:layout_marginTop="11dp"
-        android:id="@+id/textView4" />
+        android:id="@+id/textview" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_below="@+id/textView4"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText"
-        android:id="@+id/editText2" />
+        android:layout_below="@+id/textview"
+        android:layout_alignRight="@+id/usernameRegisterTxt"
+        android:layout_alignEnd="@+id/usernameRegisterTxt"
+        android:id="@+id/passwordRegisterTxt"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:text="Re-Type Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
+        android:layout_below="@+id/passwordRegisterTxt"
+        android:layout_alignLeft="@+id/passwordRegisterTxt"
+        android:layout_alignStart="@+id/passwordRegisterTxt"
         android:layout_marginTop="17dp"
-        android:id="@+id/textView8" />
+        android:id="@+id/textView5" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_below="@+id/textView8"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2"
-        android:id="@+id/editText3" />
+        android:layout_below="@+id/textView5"
+        android:layout_alignRight="@+id/passwordRegisterTxt"
+        android:layout_alignEnd="@+id/passwordRegisterTxt"
+        android:id="@+id/verifyPasswordRegisterTxt"
+        android:textColor="@android:color/black" />
 
     <Button
         android:text="Create Account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/verifyPasswordRegisterTxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
-        android:id="@+id/button" />
+        android:id="@+id/createRegisterBtn" />
+
+    <TextView
+        android:text="Create New Account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:id="@+id/textView2"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:id="@+id/resultRegisterTextView" />
 </RelativeLayout>

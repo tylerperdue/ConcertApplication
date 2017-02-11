@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.tylerperdue.concertapplication.NavigationView">
+    tools:context="com.example.tylerperdue.concertapplication.Navigation">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/ic_menu_gallery"
+                app:srcCompat="@mipmap/event"
                 android:layout_below="@+id/textView7"
                 android:layout_marginTop="15dp"
                 android:id="@+id/imageButton7"
@@ -46,12 +46,12 @@
                 android:layout_alignLeft="@+id/textView7"
                 android:layout_alignStart="@+id/textView7"
                 android:layout_marginRight="15dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:adjustViewBounds="false"
                 android:background="@android:color/transparent" />
 
             <TextView
-                android:text="Venues"
+                android:text="Artists"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageButton6"
@@ -63,7 +63,7 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/ic_menu_gallery"
+                app:srcCompat="@mipmap/artist"
                 android:layout_below="@+id/textView6"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -73,10 +73,10 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginRight="15dp"
                 android:background="@android:color/transparent"
-                android:scaleType="fitCenter" />
+                android:scaleType="centerCrop" />
 
             <TextView
-                android:text="Artists"
+                android:text="Venues"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageButton5"
@@ -87,7 +87,7 @@
 
             <ImageButton
                 android:layout_width="match_parent"
-                app:srcCompat="@drawable/ic_menu_gallery"
+                app:srcCompat="@mipmap/venue"
                 android:id="@+id/imageButton5"
                 android:layout_below="@+id/textView5"
                 android:layout_alignParentLeft="true"
@@ -97,7 +97,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_height="150dp"
                 android:layout_marginRight="15dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 android:background="@android:color/transparent"
                 android:layout_marginBottom="15dp" />
 

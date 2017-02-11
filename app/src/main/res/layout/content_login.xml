@@ -10,87 +10,31 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.tylerperdue.concertapplication.LoginView"
+    tools:context="com.example.tylerperdue.concertapplication.Login"
     tools:showIn="@layout/activity_login"
     android:background="@android:color/background_light">
-
-    <TextView
-        android:text="Email Address:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/passwordTxt"
-        android:layout_alignLeft="@+id/emailTxt"
-        android:layout_alignStart="@+id/emailTxt"
-        android:layout_marginBottom="59dp"
-        android:id="@+id/emailTextView"
-        android:layout_marginTop="0dp"
-        android:textColor="@android:color/black" />
-
-    <TextView
-        android:text="Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/passwordTxt"
-        android:layout_alignStart="@+id/passwordTxt"
-        android:id="@+id/passwordTextView"
-        android:layout_below="@+id/emailTxt"
-        android:textColor="@android:color/black" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:layout_marginTop="126dp"
-        android:id="@+id/emailTxt"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textColorLink="#ff9900"
-        android:textColor="@android:color/white" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/signinBtn"
-        android:layout_toStartOf="@+id/signinBtn"
         android:layout_marginBottom="64dp"
-        android:id="@+id/resultTextView" />
-
-    <Button
-        android:text="Create Account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/createAccountBtn"
-        android:background="@android:color/holo_blue_dark"
-        android:layout_above="@+id/resultTextView"
-        android:layout_alignRight="@+id/emailTextView"
-        android:layout_alignEnd="@+id/emailTextView"
-        android:layout_marginBottom="70dp" />
+        android:id="@+id/resultTextView"
+        android:layout_toEndOf="@+id/createAccountBtn"
+        android:textAlignment="center" />
 
     <Button
         android:text="Sign In"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/signinBtn"
-        android:background="#ff9900"
         android:layout_alignBaseline="@+id/createAccountBtn"
         android:layout_alignBottom="@+id/createAccountBtn"
         android:layout_toRightOf="@+id/createAccountBtn"
-        android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp" />
-
-    <TextView
-        android:text="Concert Application"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:textSize="36sp"
-        android:textStyle="normal|bold"
-        android:textColor="#ff9900"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_toEndOf="@+id/createAccountBtn"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -99,27 +43,64 @@
         android:ems="10"
         android:id="@+id/passwordTxt"
         android:textColorLink="#ff9900"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:layout_below="@+id/passwordTextView"
-        android:layout_alignLeft="@+id/emailTxt"
-        android:layout_alignStart="@+id/emailTxt" />
+        android:layout_alignLeft="@+id/usernameTextView"
+        android:layout_alignStart="@+id/usernameTextView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_marginTop="138dp"
+        android:id="@+id/useridTxt"
+        android:textColorLink="#ff9900"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Username: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        android:id="@+id/usernameTextView"
+        android:textColor="@android:color/black"
+        android:layout_alignBottom="@+id/useridTxt"
+        android:layout_alignLeft="@+id/useridTxt"
+        android:layout_alignStart="@+id/useridTxt" />
 
     <Button
         android:text="Create Account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/createAccountBtn"
+        android:layout_marginBottom="34dp"
         android:layout_above="@+id/resultTextView"
-        android:layout_alignLeft="@+id/passwordTxt"
-        android:layout_alignStart="@+id/passwordTxt"
-        android:id="@+id/createAccountBtn" />
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
 
-    <Button
-        android:text="Sign In"
+    <TextView
+        android:text="Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/createAccountBtn"
-        android:layout_alignRight="@+id/passwordTxt"
-        android:layout_alignEnd="@+id/passwordTxt"
-        android:id="@+id/signinBtn" />
+        android:id="@+id/passwordTextView"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/usernameTextView"
+        android:layout_alignLeft="@+id/passwordTxt"
+        android:layout_alignStart="@+id/passwordTxt" />
+
+    <TextView
+        android:text="Concert Application"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="30sp"
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
