@@ -48,7 +48,8 @@
                 android:layout_marginRight="15dp"
                 android:scaleType="centerCrop"
                 android:adjustViewBounds="false"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:onClick="Navigation." />
 
             <TextView
                 android:text="Artists"
