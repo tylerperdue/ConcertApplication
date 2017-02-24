@@ -1,4 +1,4 @@
-package com.example.tylerperdue.concertapplication;
+package concertApplication;
 
 /**
  * Created by tylerperdue on 2/9/17.
