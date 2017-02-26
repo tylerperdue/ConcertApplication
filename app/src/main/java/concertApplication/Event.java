@@ -11,7 +11,7 @@ public class Event {
     public static final String TABLE = "Event";
 
     // Labels Table Columns names
-    public static final String KEY_ID = "id";
+    public static final String KEY_ID = "_id";
     public static final String KEY_name = "name";
     public static final String KEY_date = "date";
     public static final String KEY_venue = "venue";

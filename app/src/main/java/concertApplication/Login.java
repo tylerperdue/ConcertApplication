@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import concertApplication.R;
-
 import java.util.List;
 
 
@@ -24,6 +22,11 @@ public class Login extends AppCompatActivity {
         final EditText useridTxt = (EditText) findViewById(R.id.useridTxt);
         final EditText passwordTxt = (EditText) findViewById(R.id.passwordTxt);
         final TextView result = (TextView) findViewById(R.id.resultTextView);
+
+        // TEST
+        DBHandler db = new DBHandler(getBaseContext());
+        int count = db.getNumberOfEvents();
+        result.setText(Integer.toString(count));
 
         Button signin = (Button) findViewById(R.id.signinBtn);
         signin.setOnClickListener(new View.OnClickListener(){

@@ -16,7 +16,7 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 5;
 
     // Database Name
     private static final String DATABASE_NAME = "ConcertApplication";
@@ -53,38 +53,70 @@ public class DBHandler extends SQLiteOpenHelper {
                 + Artist.KEY_name + " TEXT, "
                 + Artist.KEY_genre + " TEXT" + ");";
 
-        String CREATE_TABLE_EVENT_ARTIST = "CREATE TABLE event_artist (event_id INTEGER, " +
+        String CREATE_TABLE_EVENT_ARTIST = "CREATE TABLE event_artist(event_id INTEGER, " +
                 "artist_id INTEGER, FOREIGN KEY(event_id) REFERENCES " + Event.TABLE + "("
-                + Event.KEY_ID + "), FOREGIN KEY(artist_id) REFERENCES " + Artist.TABLE + "("
+                + Event.KEY_ID + "), FOREIGN KEY(artist_id) REFERENCES " + Artist.TABLE + "("
                 + Artist.KEY_ID + "));";
 
         String CREATE_TABLE_FAVORITED_ARTISTS = "CREATE TABLE favorited_artists (user_id INTEGER, " +
                 "artist_id INTEGER, FOREIGN KEY(user_id) REFERENCES " + User.TABLE + "("
-                + User.KEY_ID + "), FOREGIN KEY(artist_id) REFERENCES " + Artist.TABLE + "("
+                + User.KEY_ID + "), FOREIGN KEY(artist_id) REFERENCES " + Artist.TABLE + "("
                 + Artist.KEY_ID + "));";
 
-        String INSERT_TEST_VENUE = "INSERT INTO " + Venue.TABLE + "VALUES('Example Venue', '1234 Address St.');";
-        String INSERT_TEST_EVENT = "INSERT INTO " + Event.TABLE + "VALUES('Example Event', '1988-10-30', 1);";
+        String INSERT_TEST_VENUE = "INSERT INTO " + Venue.TABLE + " VALUES(1, 'Example Venue', '1234 Address St.');";
+        String INSERT_TEST_EVENT = "INSERT INTO " + Event.TABLE + " VALUES(1, 'Example Event', '1988-10-30', 1);";
 
-        String sql = CREATE_TABLE_USER + CREATE_TABLE_VENUE + CREATE_TABLE_EVENT
-                + CREATE_TABLE_ARTIST + CREATE_TABLE_EVENT_ARTIST + CREATE_TABLE_FAVORITED_ARTISTS
-                + INSERT_TEST_VENUE + INSERT_TEST_EVENT;
-
-        db.execSQL(sql);
+        db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_VENUE);
+        db.execSQL(CREATE_TABLE_EVENT);
+        db.execSQL(CREATE_TABLE_ARTIST);
+        db.execSQL(CREATE_TABLE_EVENT_ARTIST);
+        db.execSQL(CREATE_TABLE_FAVORITED_ARTISTS);
+        db.execSQL(INSERT_TEST_VENUE);
+        db.execSQL(INSERT_TEST_EVENT);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLES IF EXISTS 'favorited_artists'");
-        db.execSQL("DROP TABLES IF EXISTS 'event_artist'");
-        db.execSQL("DROP TABLES IF EXISTS '" + Artist.TABLE + "'");
-        db.execSQL("DROP TABLES IF EXISTS '" + Event.TABLE + "'");
-        db.execSQL("DROP TABLES IF EXISTS '" + Venue.TABLE + "'");
-        db.execSQL("DROP TABLE IF EXISTS '" + User.TABLE + "'" );
+        db.execSQL("DROP TABLE IF EXISTS favorited_artists");
+        db.execSQL("DROP TABLE IF EXISTS event_artist");
+        db.execSQL("DROP TABLE IF EXISTS " + Artist.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + Event.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + Venue.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE);
 
         // Creating tables again
         onCreate(db);
+    }
+
+    // Class to return Event table column names
+    public String[] getEventColumns() {
+        String [] columns = {Event.KEY_ID, Event.KEY_name, Event.KEY_date, Event.KEY_venue};
+        return columns;
+    }
+
+    public Cursor getAllEvents() {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor mCursor = db.query(Event.TABLE, getEventColumns(),
+                null, null, null, null, null);
+
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+
+    public int getNumberOfEvents() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String count = "SELECT count(*) FROM Event";
+        Cursor mcursor = db.rawQuery(count, null);
+        if (mcursor != null) {
+            mcursor.moveToFirst();
+        }
+        int icount = mcursor.getInt(0);
+        return icount;
     }
 
     // Class to insert user

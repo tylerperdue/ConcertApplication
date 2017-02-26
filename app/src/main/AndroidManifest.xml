@@ -25,6 +25,7 @@
         </activity>
         <activity android:name="concertApplication.Navigation" />
         <activity android:name="concertApplication.Registration"></activity>
+        <activity android:name="concertApplication.EventListDisplay"></activity>
     </application>
 
 </manifest>

@@ -9,7 +9,7 @@ public class User {
     public static final String TABLE = "User";
 
     // Labels Table Columns names
-    public static final String KEY_ID = "id";
+    public static final String KEY_ID = "_id";
     public static final String KEY_username = "username";
     public static final String KEY_password = "password";
 

@@ -9,7 +9,7 @@ public class Venue {
     public static final String TABLE = "Venue";
 
     // Labels Table Columns names
-    public static final String KEY_ID = "id";
+    public static final String KEY_ID = "_id";
     public static final String KEY_name = "name";
     public static final String KEY_address = "address";
 

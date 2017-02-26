@@ -9,7 +9,7 @@ public class Artist {
     public static final String TABLE = "Artist";
 
     // Labels Table Columns names
-    public static final String KEY_ID = "id";
+    public static final String KEY_ID = "_id";
     public static final String KEY_name = "name";
     public static final String KEY_genre = "genre";
 
