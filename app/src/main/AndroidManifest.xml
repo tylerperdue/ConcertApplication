@@ -26,6 +26,8 @@
         <activity android:name="concertApplication.Navigation" />
         <activity android:name="concertApplication.Registration"></activity>
         <activity android:name="concertApplication.EventListDisplay"></activity>
+        <activity android:name="concertApplication.VenueListDisplay"></activity>
+        <activity android:name="concertApplication.ArtistListDisplay"></activity>
     </application>
 
 </manifest>

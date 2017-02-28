@@ -25,11 +25,21 @@ public class Navigation extends AppCompatActivity {
                 Navigation.this.startActivity(myIntent);
             }
         });
-    }
-
-    public void onClickResults()
-    {
-        Intent intent = new Intent(this, EventListDisplay.class);
-        startActivity(intent);
+        final ImageButton venueImageButton = (ImageButton) findViewById(R.id.imageButton5);
+        venueImageButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent myIntent = new Intent(Navigation.this, VenueListDisplay.class);
+                Navigation.this.startActivity(myIntent);
+            }
+        });
+        final ImageButton artistImageButton = (ImageButton) findViewById(R.id.imageButton6);
+        artistImageButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent myIntent = new Intent(Navigation.this, ArtistListDisplay.class);
+                Navigation.this.startActivity(myIntent);
+            }
+        });
     }
 }
