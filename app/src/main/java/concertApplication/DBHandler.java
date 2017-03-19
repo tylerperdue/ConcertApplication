@@ -244,4 +244,55 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         return userList;
     }
+
+    public Artist getArtist(String artistName){
+        String selectQuery = ("SELECT * FROM " + Artist.TABLE + " WHERE " + Artist.KEY_name + " = '" + artistName + "';");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        Artist artist = new Artist();
+        if (cursor.moveToFirst()) {
+            do {
+                artist = new Artist();
+                artist.setId(Integer.parseInt(cursor.getString(0)));
+                artist.setName(cursor.getString(1));
+                artist.setGenre(cursor.getString(2));
+            } while (cursor.moveToNext());
+        }
+        return artist;
+    }
+
+    public Venue getVenue(String venueName){
+        String selectQuery = ("SELECT * FROM " + Venue.TABLE + " WHERE " + Venue.KEY_name + " = '" + venueName + "';");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        Venue venue = new Venue();
+        if (cursor.moveToFirst()) {
+            do {
+                venue = new Venue();
+                venue.setId(Integer.parseInt(cursor.getString(0)));
+                venue.setName(cursor.getString(1));
+                venue.setAddress(cursor.getString(2));
+            } while (cursor.moveToNext());
+        }
+        return venue;
+    }
+
+    public Event getEvent(String eventName){
+        String selectQuery = ("SELECT Event._id, Event.name, Venue.name AS venue, Event.date " +
+                " FROM " + Event.TABLE + " INNER JOIN Venue ON Event.venue = Venue._id " +
+                " WHERE Event.name " + " = '" + eventName + "';");
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        Event event = new Event();
+        if (cursor.moveToFirst()) {
+            do {
+                event = new Event();
+                event.setId(Integer.parseInt(cursor.getString(0)));
+                event.setName(cursor.getString(1));
+                event.setDate(cursor.getString(2));
+                event.setVenue(cursor.getString(3));
+            } while (cursor.moveToNext());
+        }
+        return event;
+    }
 }

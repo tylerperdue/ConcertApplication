@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchErrorMessage"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:text="Search For:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchForTextView"
+        android:layout_margin="10dp"
+        android:textSize="24sp"
+        android:textAlignment="center" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.04"
+        android:id="@+id/searchRadioGroup">
+
+        <RadioButton
+            android:text="Artists"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/artistsRadioButton"
+            android:layout_marginLeft="140dp"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="Venues"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/venuesRadioButton"
+            android:layout_marginLeft="140dp"
+            android:layout_weight="1" />
+
+        <RadioButton
+            android:text="Events"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventsRadioButton"
+            android:layout_marginLeft="140dp"
+            android:layout_weight="1" />
+    </RadioGroup>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/searchText"
+        android:layout_margin="30dp" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchButton"
+        android:layout_marginLeft="77dp"
+        android:textAlignment="center"
+        android:layout_marginBottom="30dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchResult1"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchResult2"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchResult3"
+        android:textAlignment="center" />
+</LinearLayout>

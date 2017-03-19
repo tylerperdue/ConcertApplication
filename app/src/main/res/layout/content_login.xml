@@ -71,16 +71,6 @@
         android:layout_alignLeft="@+id/useridTxt"
         android:layout_alignStart="@+id/useridTxt" />
 
-    <Button
-        android:text="Create Account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/createAccountBtn"
-        android:layout_marginBottom="34dp"
-        android:layout_above="@+id/resultTextView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
-
     <TextView
         android:text="Password"
         android:layout_width="wrap_content"
@@ -92,15 +82,26 @@
         android:layout_alignStart="@+id/passwordTxt" />
 
     <TextView
-        android:text="Concert Application"
+        android:text="Concertpedia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
-        android:textSize="30sp"
+        android:textSize="36sp"
         android:textStyle="normal|bold"
         android:textColor="@android:color/black"
         android:layout_marginTop="50dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Create Account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/createAccountBtn"
+        android:layout_marginLeft="42dp"
+        android:layout_marginStart="42dp"
+        android:layout_above="@+id/resultTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -19,8 +19,8 @@ public class Event {
     // Properties to help us keep data
     private int id;
     private String name;
-    private ArrayList<Artist> lineup;
-    private Date date;
+    private String venue;
+    private String date;
 
     // Getters and Setters
     public int getId() {
@@ -29,10 +29,10 @@ public class Event {
     public String getName() {
         return name;
     }
-    public ArrayList getLineup() {
-        return lineup;
+    public String getVenue() {
+        return venue;
     }
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
     public void setId(int id){
@@ -41,10 +41,10 @@ public class Event {
     public void setName(String name) {
         this.name = name;
     }
-    public void setLineup(ArrayList<Artist> lineup) {
-        this.lineup = lineup;
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
