@@ -11,7 +11,9 @@
         android:id="@+id/searchErrorMessage"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        android:layout_weight="0.08"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="Search For:"

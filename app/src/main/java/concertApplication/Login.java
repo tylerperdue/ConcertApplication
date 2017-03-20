@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Login extends AppCompatActivity {
 
+    String loggedInUser;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,6 @@ public class Login extends AppCompatActivity {
                 boolean authenticated = authenticate(username, password);
                 if(authenticated){
                     Intent myIntent = new Intent(Login.this, Navigation.class);
-//                    myIntent.putExtra("key", value); //Optional parameters
                     Login.this.startActivity(myIntent);
                 }else{
                     result.setText("Incorrect parameters. Please try again.");

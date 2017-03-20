@@ -26,11 +26,12 @@ public class Search extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(searchRadios.getCheckedRadioButtonId() == 0){
+                if(searchRadios.getCheckedRadioButtonId() == -1){
                     errorMessage.setText("Please select a search type.");
-                }else if(searchTxt.getText() == null){
+                }else if(searchTxt.getText().toString().matches("")){
                     errorMessage.setText("Please enter search criteria.");
                 }else{
+                    errorMessage.setText("");
                     int searchType = searchRadios.getCheckedRadioButtonId();
                     String searchCriteria = searchTxt.getText().toString();
                     String[] results = search(searchType, searchCriteria);

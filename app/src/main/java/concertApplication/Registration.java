@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import concertApplication.R;
-
 import java.util.List;
 
 public class Registration extends AppCompatActivity {

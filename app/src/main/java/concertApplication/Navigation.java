@@ -45,5 +45,13 @@ public class Navigation extends AppCompatActivity {
                 Navigation.this.startActivity(myIntent);
             }
         });
+        final Button userProfileButton = (Button) findViewById(R.id.userProfileButton);
+        userProfileButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent myIntent = new Intent(Navigation.this, AddArtist.class);
+                Navigation.this.startActivity(myIntent);
+            }
+        });
     }
 }
