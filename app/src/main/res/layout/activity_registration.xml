@@ -11,6 +11,26 @@
     tools:context="com.example.tylerperdue.concertapplication.concertApplication.Registration">
 
     <TextView
+        android:text="Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/name"
+        android:layout_alignBaseline="@+id/resultRegisterTextView"
+        android:layout_alignBottom="@+id/resultRegisterTextView"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/nameRegisterTxt"
+        android:layout_below="@+id/resultRegisterTextView"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
         android:text="Username: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +39,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="65dp"
         android:layout_marginStart="65dp"
-        android:layout_marginTop="69dp"
+        android:layout_marginTop="80dp"
         android:id="@+id/textView3" />
 
     <EditText
@@ -70,20 +90,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/verifyPasswordRegisterTxt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/createRegisterBtn" />
-
-    <TextView
-        android:text="Create New Account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:id="@+id/textView2"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal|bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,4 +111,17 @@
         android:layout_below="@+id/textview"
         android:layout_alignLeft="@+id/textview"
         android:layout_alignStart="@+id/textview" />
+
+    <TextView
+        android:text="Create New Account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:id="@+id/textView2"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="normal|bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

@@ -20,11 +20,11 @@ public class VenueListDisplay extends ListActivity {
         //later change concertApplication.DBHandler.db.HEY_username to column name of events in database
         DBHandler db = new DBHandler(getBaseContext());
         String[] fromColumns = {Venue.KEY_name, Venue.KEY_address};
-        int[] toView = new int[] { R.id.venueName_entry, R.id.address_entry };
+        int[] toView = new int[] { R.id.venueName, R.id.venueLocation };
 
         Cursor cursor = db.getAllVenues();
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-                R.layout.activity_results_venues, cursor, fromColumns, toView, 0);
+                R.layout.venues_listview, cursor, fromColumns, toView, 0);
         ListView listView = getListView();
         listView.setAdapter(adapter);
     }

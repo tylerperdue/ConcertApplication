@@ -17,6 +17,7 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        final EditText nameTxt = (EditText) findViewById(R.id.nameRegisterTxt);
         final EditText usernameTxt = (EditText) findViewById(R.id.usernameRegisterTxt);
         final EditText passwordTxt = (EditText) findViewById(R.id.passwordRegisterTxt);
         final EditText verifyPasswordTxt = (EditText) findViewById(R.id.verifyPasswordRegisterTxt);
@@ -27,28 +28,29 @@ public class Registration extends AppCompatActivity {
         createAccount.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                String name = nameTxt.getText().toString();
                 String username = usernameTxt.getText().toString();
                 String password = passwordTxt.getText().toString();
                 String verifyPassword = verifyPasswordTxt.getText().toString();
                 String result;
-                if(!password.equals(verifyPassword)){
-                    result =  "Passwords do not match";
+                if(nameTxt.getText().toString().matches("")){
+                    resultTextView.setText("Please enter a name.");
                 }else{
-                    result = register(username, password, verifyPassword);
-                }
-                if(result.equals("User created.")){
-                    Intent myIntent = new Intent(Registration.this, Login.class);
-                    Registration.this.startActivity(myIntent);
-                }else if(result.equals("Username already exists.")) {
-                    resultTextView.setText("Username already exists. Please try again.");
-                }else {
-                    resultTextView.setText("Passwords do not match. Please try again.");
+                    result = register(name, username, password, verifyPassword);
+                    if(result.equals("User created.")){
+                        Intent myIntent = new Intent(Registration.this, Login.class);
+                        Registration.this.startActivity(myIntent);
+                    }else if(result.equals("Username already exists.")) {
+                        resultTextView.setText("Username already exists. Please try again.");
+                    }else {
+                        resultTextView.setText("Passwords do not match. Please try again.");
+                    }
                 }
             }
         });
     }
 
-    public String register(String username, String password, String verifyPassword){
+    public String register(String name, String username, String password, String verifyPassword){
         String result;
         DBHandler db = new DBHandler(getBaseContext());
         List<User> userList = db.getAllUsers();
@@ -62,6 +64,7 @@ public class Registration extends AppCompatActivity {
             result = "Passwords do not match";
         } else{
             User user = new User();
+            user.setName(name);
             user.setUsername(username);
             user.setPassword(password);
             db.insertUser(user);

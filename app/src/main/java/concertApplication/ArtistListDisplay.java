@@ -21,11 +21,11 @@ public class ArtistListDisplay extends ListActivity {
         //later change concertApplication.DBHandler.db.HEY_username to column name of events in database
         DBHandler db = new DBHandler(getBaseContext());
         String[] fromColumns = {Artist.KEY_name, Artist.KEY_genre};
-        int[] toView = new int[] { R.id.artistName_entry, R.id.genre_entry };
+        int[] toView = new int[] { R.id.artistName, R.id.artistGenre };
 
         Cursor cursor = db.getAllArtists();
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-                R.layout.activity_results_artists, cursor, fromColumns, toView, 0);
+                R.layout.artists_listview, cursor, fromColumns, toView, 0);
         ListView listView = getListView();
         listView.setAdapter(adapter);
     }

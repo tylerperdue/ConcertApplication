@@ -56,6 +56,11 @@ public class Search extends AppCompatActivity {
             Event event = db.getEvent(criteria);
             results = new String[]{event.getName(), event.getDate(), event.getVenue()};
         }
+        if(results[0] == null){
+            System.out.println("In Loop");
+            System.out.println(results);
+            results = new String[]{"No results for keyword '".concat(criteria).concat("'."), null, null};
+        }
         return results;
     }
 }

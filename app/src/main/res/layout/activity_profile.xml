@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
 
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
     <ImageView
         android:id="@+id/imageButton"
@@ -36,33 +40,41 @@
         android:textSize="30sp"
         android:layout_height="wrap_content" />
 
+    <ListView
+        android:id="@+id/favArtists"
+        android:layout_width="wrap_content"
+        android:layout_height="125dp" />
+
     <TextView
-        android:text="No favorite artists yet, add one below!"
+        android:id="@+id/artistTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView7"
-        android:layout_weight="0.20"
-        android:layout_margin="20dp"
+        android:layout_weight="0.10"
+        android:text="Select an Artist.."
         android:textAlignment="center" />
 
-    <EditText
+    <Spinner
+        android:id="@+id/artistSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/favArtist1"
-        android:layout_weight="0.02"
-        android:layout_margin="30dp" />
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.10"
+        android:gravity="center_vertical|center_horizontal" />
 
     <Button
         android:id="@+id/addFavArtist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="addFav"
-        android:text="Add a Favorite"
-        android:layout_weight="0.02"
         android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp" />
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.02"
+        android:onClick="addFav"
+        android:text="Add" />
 
 
 </LinearLayout>
+</ScrollView>

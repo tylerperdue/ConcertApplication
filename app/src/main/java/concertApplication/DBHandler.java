@@ -16,7 +16,7 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 13;
 
     // Database Name
     private static final String DATABASE_NAME = "ConcertApplication";
@@ -32,6 +32,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         String CREATE_TABLE_USER = "CREATE TABLE " + User.TABLE + "( "
                 + User.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + User.KEY_name + " TEXT, "
                 + User.KEY_username + " TEXT, "
                 + User.KEY_password + " TEXT" + ");";
 
@@ -58,7 +59,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + Event.KEY_ID + "), FOREIGN KEY(artist_id) REFERENCES " + Artist.TABLE + "("
                 + Artist.KEY_ID + "));";
 
-        String CREATE_TABLE_FAVORITED_ARTISTS = "CREATE TABLE favorited_artists (user_id INTEGER, " +
+        String CREATE_TABLE_FAVORITED_ARTISTS = "CREATE TABLE favorited_artists (_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, " +
                 "artist_id INTEGER, FOREIGN KEY(user_id) REFERENCES " + User.TABLE + "("
                 + User.KEY_ID + "), FOREIGN KEY(artist_id) REFERENCES " + Artist.TABLE + "("
                 + Artist.KEY_ID + "));";
@@ -181,6 +182,22 @@ public class DBHandler extends SQLiteOpenHelper {
         return mCursor;
     }
 
+    public ArrayList<Artist> getAllFavoritedArtists(int userID) {
+        String selectQuery = "SELECT * FROM favorited_artists WHERE user_id = " + userID + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor mCursor = db.rawQuery(selectQuery, null);
+        ArrayList<Artist> favoritedArtists = new ArrayList<>();
+
+        if (mCursor.moveToFirst()) {
+            do {
+                Artist artist = getArtist(Integer.parseInt(mCursor.getString(1)));
+                favoritedArtists.add(artist);
+            } while (mCursor.moveToNext());
+        }
+        return favoritedArtists;
+    }
+
+
     public int getNumberOfEvents() {
         SQLiteDatabase db = this.getWritableDatabase();
         String count = "SELECT count(*) FROM Event";
@@ -197,6 +214,7 @@ public class DBHandler extends SQLiteOpenHelper {
         //Open connection to write data
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(User.KEY_name, user.getName());
         values.put(User.KEY_username, user.getUsername());
         values.put(User.KEY_password, user.getPassword());
 
@@ -204,6 +222,20 @@ public class DBHandler extends SQLiteOpenHelper {
         long user_Id = db.insert(User.TABLE, null, values);
         db.close();
         return (int) user_Id;
+    }
+
+    // Class to insert favorited artists
+    public int insertFavoritedArtist(int userID, String artistName) {
+        //Open connection to write data
+        SQLiteDatabase db = getWritableDatabase();
+        int artistID = getArtistID(artistName);
+        ContentValues values = new ContentValues();
+        values.put("user_id", userID);
+        values.put("artist_id", artistID);
+
+        long favorited_artist_id = db.insert("favorited_artists", null, values);
+        db.close();
+        return (int) favorited_artist_id;
     }
 
     public void deleteUser(int id) {
@@ -222,6 +254,54 @@ public class DBHandler extends SQLiteOpenHelper {
         db.update(User.TABLE, values, User.KEY_ID + "= ?", new String[]{String.valueOf(user.getId())});
     }
 
+    // Getting a single user
+    public User getUser(int id) {
+        User user = new User();
+        String selectQuery = "SELECT * FROM " + User.TABLE + " WHERE _id = " + id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                user.setId(Integer.parseInt(cursor.getString(0)));
+                user.setName(cursor.getString(1));
+                user.setUsername(cursor.getString(2));
+                user.setPassword(cursor.getString(3));
+            } while (cursor.moveToNext());
+        }
+        return user;
+    }
+
+    // Getting an artist
+    public Artist getArtist(int id) {
+        Artist artist = new Artist();
+        String selectQuery = "SELECT * FROM " + Artist.TABLE + " WHERE _id = " + id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                artist.setId(Integer.parseInt(cursor.getString(0)));
+                artist.setName(cursor.getString(1));
+                artist.setGenre(cursor.getString(2));
+            } while (cursor.moveToNext());
+        }
+        return artist;
+    }
+
+    // Getting an artist ID
+    public int getArtistID(String artistName) {
+        String selectQuery = "SELECT _id FROM " + Artist.TABLE + " WHERE name LIKE '%" + artistName + "%';";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        int artistID = -1;
+
+        if(cursor.moveToFirst()){
+            do{
+                artistID = Integer.parseInt(cursor.getString(0));
+            }while(cursor.moveToNext());
+        }
+        return artistID;
+    }
+
     // Getting All Users
     public List<User> getAllUsers() {
         List<User> userList = new ArrayList<User>();
@@ -236,8 +316,9 @@ public class DBHandler extends SQLiteOpenHelper {
             do {
                 User user = new User();
                 user.setId((Integer.parseInt(cursor.getString(0))));
-                user.setUsername((cursor.getString(1)));
-                user.setPassword((cursor.getString(2)));
+                user.setName((cursor.getString(1)));
+                user.setUsername((cursor.getString(2)));
+                user.setPassword((cursor.getString(3)));
                 // Adding contact to list
                 userList.add(user);
             } while (cursor.moveToNext());
@@ -245,8 +326,27 @@ public class DBHandler extends SQLiteOpenHelper {
         return userList;
     }
 
+    // Getting all artists' names
+    public ArrayList<String> getAllArtistsNames() {
+        ArrayList<String> artistNameList = new ArrayList<>();
+        //Select All Query
+        String selectQuery = "Select * FROM " + Artist.TABLE;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                String artistName = cursor.getString(1);
+                artistNameList.add(artistName);
+            } while (cursor.moveToNext());
+        }
+        return artistNameList;
+    }
+
     public Artist getArtist(String artistName){
-        String selectQuery = ("SELECT * FROM " + Artist.TABLE + " WHERE " + Artist.KEY_name + " = '" + artistName + "';");
+        String selectQuery = ("SELECT * FROM " + Artist.TABLE + " WHERE " + Artist.KEY_name + " LIKE '%" + artistName + "%';");
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         Artist artist = new Artist();
@@ -262,7 +362,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public Venue getVenue(String venueName){
-        String selectQuery = ("SELECT * FROM " + Venue.TABLE + " WHERE " + Venue.KEY_name + " = '" + venueName + "';");
+        String selectQuery = ("SELECT * FROM " + Venue.TABLE + " WHERE " + Venue.KEY_name + " LIKE '%" + venueName + "%';");
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         Venue venue = new Venue();
@@ -280,7 +380,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public Event getEvent(String eventName){
         String selectQuery = ("SELECT Event._id, Event.name, Venue.name AS venue, Event.date " +
                 " FROM " + Event.TABLE + " INNER JOIN Venue ON Event.venue = Venue._id " +
-                " WHERE Event.name " + " = '" + eventName + "';");
+                " WHERE Event.name " + " LIKE '%" + eventName + "%';");
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         Event event = new Event();

@@ -19,14 +19,12 @@ public class EventListDisplay extends ListActivity {
         super.onCreate(savedInstanceState);
         //later change concertApplication.DBHandler.db.HEY_username to column name of events in database
         DBHandler db = new DBHandler(getBaseContext());
-//        String[] fromColumns = {Event.KEY_name, Event.KEY_venue, Event.KEY_date};
+        ListView list = getListView();
         String[] fromColumns = {"name", "venue", "date"};
-        int[] toView = new int[] { R.id.eventName_entry, R.id.venue_entry, R.id.date_entry };
-
+        int[] toView = new int[] { R.id.eventName, R.id.eventVenue, R.id.eventDate };
         Cursor cursor = db.getAllEvents();
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
-                R.layout.activity_results_events, cursor, fromColumns, toView, 0);
-        ListView listView = getListView();
-        listView.setAdapter(adapter);
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getBaseContext(),
+                R.layout.events_listview, cursor, fromColumns, toView, 0);
+        list.setAdapter(adapter);
     }
 }

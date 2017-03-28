@@ -14,94 +14,112 @@
     tools:showIn="@layout/activity_login"
     android:background="@android:color/background_light">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/signinBtn"
-        android:layout_marginBottom="64dp"
-        android:id="@+id/resultTextView"
-        android:layout_toEndOf="@+id/createAccountBtn"
-        android:textAlignment="center" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:text="Sign In"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/signinBtn"
-        android:layout_alignBaseline="@+id/createAccountBtn"
-        android:layout_alignBottom="@+id/createAccountBtn"
-        android:layout_toRightOf="@+id/createAccountBtn"
-        android:layout_toEndOf="@+id/createAccountBtn"
-        android:layout_marginLeft="18dp"
-        android:layout_marginStart="18dp" />
+        <TextView
+            android:text="Concertpedia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:textSize="36sp"
+            android:textStyle="normal|bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:layout_marginTop="138dp"
-        android:id="@+id/useridTxt"
-        android:textColorLink="#ff9900"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/resultTextView"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorAccent"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50dp"
+            android:textAlignment="center" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/passwordTxt"
-        android:textColorLink="#ff9900"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/passwordTextView"
-        android:layout_alignLeft="@+id/usernameTextView"
-        android:layout_alignStart="@+id/usernameTextView" />
+        <TextView
+            android:text="Username: "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:id="@+id/usernameTextView"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/useridTxt"
+            android:layout_alignLeft="@+id/useridTxt"
+            android:layout_alignStart="@+id/useridTxt"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
 
-    <TextView
-        android:text="Username: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
-        android:id="@+id/usernameTextView"
-        android:textColor="@android:color/black"
-        android:layout_alignBottom="@+id/useridTxt"
-        android:layout_alignLeft="@+id/useridTxt"
-        android:layout_alignStart="@+id/useridTxt" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/useridTxt"
+            android:textColorLink="#ff9900"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
 
-    <TextView
-        android:text="Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/passwordTextView"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/usernameTextView"
-        android:layout_alignLeft="@+id/passwordTxt"
-        android:layout_alignStart="@+id/passwordTxt" />
+        <TextView
+            android:text="Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/passwordTextView"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/usernameTextView"
+            android:layout_alignLeft="@+id/passwordTxt"
+            android:layout_alignStart="@+id/passwordTxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
 
-    <TextView
-        android:text="Concertpedia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:textSize="36sp"
-        android:textStyle="normal|bold"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/passwordTxt"
+            android:textColorLink="#ff9900"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/passwordTextView"
+            android:layout_alignLeft="@+id/usernameTextView"
+            android:layout_alignStart="@+id/usernameTextView"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
 
-    <Button
-        android:text="Create Account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/createAccountBtn"
-        android:layout_marginLeft="42dp"
-        android:layout_marginStart="42dp"
-        android:layout_above="@+id/resultTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <Button
+            android:text="Sign In"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/signinBtn"
+            android:layout_alignBaseline="@+id/createAccountBtn"
+            android:layout_alignBottom="@+id/createAccountBtn"
+            android:layout_toRightOf="@+id/resultTextView"
+            android:layout_toEndOf="@+id/resultTextView"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp" />
+
+        <Button
+            android:text="Create Account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/createAccountBtn"
+            android:layout_below="@+id/passwordTxt"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp" />
+
+    </LinearLayout>
 
 </RelativeLayout>

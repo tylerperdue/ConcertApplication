@@ -13,7 +13,8 @@ import java.util.List;
 
 public class Login extends AppCompatActivity {
 
-    String loggedInUser;
+    public int loggedInUserID;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class Login extends AppCompatActivity {
                 boolean authenticated = authenticate(username, password);
                 if(authenticated){
                     Intent myIntent = new Intent(Login.this, Navigation.class);
+                    myIntent.putExtra("loggedInUser", loggedInUserID);
                     Login.this.startActivity(myIntent);
                 }else{
                     result.setText("Incorrect parameters. Please try again.");
@@ -57,6 +59,7 @@ public class Login extends AppCompatActivity {
         for(int i=0; i<userList.size(); i++){
             if(username.equals(userList.get(i).getUsername())){
                 if(password.equals(userList.get(i).getPassword())){
+                    loggedInUserID = userList.get(i).getId();
                     authenticated = true;
                 }
             }
