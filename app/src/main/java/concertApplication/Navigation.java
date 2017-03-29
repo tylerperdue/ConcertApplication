@@ -55,7 +55,7 @@ public class Navigation extends AppCompatActivity {
         userProfileButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent myIntent = new Intent(Navigation.this, AddArtist.class);
+                Intent myIntent = new Intent(Navigation.this, Profile.class);
                 myIntent.putExtra("loggedInUser", loggedInUserID);
                 Navigation.this.startActivity(myIntent);
             }

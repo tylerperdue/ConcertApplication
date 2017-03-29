@@ -9,21 +9,22 @@ import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by Ewurafua on 2/23/2017.
+ *
+ * Class Description: The ArtistListDisplay is the view for populating the artists list view that
+ * shows information related to artists in the database.
  */
 
 
 public class ArtistListDisplay extends ListActivity {
-    // Array of strings...
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //later change concertApplication.DBHandler.db.HEY_username to column name of events in database
         DBHandler db = new DBHandler(getBaseContext());
+        Cursor cursor = db.getAllArtists();
+        db.close();
         String[] fromColumns = {Artist.KEY_name, Artist.KEY_genre};
         int[] toView = new int[] { R.id.artistName, R.id.artistGenre };
-
-        Cursor cursor = db.getAllArtists();
         SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
                 R.layout.artists_listview, cursor, fromColumns, toView, 0);
         ListView listView = getListView();

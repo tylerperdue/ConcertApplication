@@ -29,7 +29,7 @@
         <activity android:name=".VenueListDisplay" />
         <activity android:name=".ArtistListDisplay" />
         <activity android:name=".Search" />
-        <activity android:name=".AddArtist" />
+        <activity android:name=".Profile" />
     </application>
 
 </manifest>

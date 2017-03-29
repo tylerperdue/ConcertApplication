@@ -1,7 +1,10 @@
 package concertApplication;
 
-/**
+/*
  * Created by Ewurafua on 2/23/2017.
+ *
+ * Class Description: The EventListDisplay is the view for populating the events list view that
+ * shows information related to events in the database.
  */
 
 import android.app.ListActivity;
@@ -12,12 +15,10 @@ import android.database.Cursor;
 
 
 public class EventListDisplay extends ListActivity {
-    // Array of strings...
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //later change concertApplication.DBHandler.db.HEY_username to column name of events in database
         DBHandler db = new DBHandler(getBaseContext());
         ListView list = getListView();
         String[] fromColumns = {"name", "venue", "date"};

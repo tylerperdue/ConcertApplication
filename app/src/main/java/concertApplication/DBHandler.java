@@ -1,7 +1,13 @@
 package concertApplication;
 
-/**
+/*
  * Created by tylerperdue on 2/9/17.
+ * Last Edited by tylerperdue on 3/28/17.
+ *
+ * Class Description: The DBHandler class is responsible for all things database related.
+ *
+ * Database version needs to be changed when any modifications to hardcoded data or table changes
+ * are made.
  */
 
 import android.content.ContentValues;
@@ -16,7 +22,7 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 14;
 
     // Database Name
     private static final String DATABASE_NAME = "ConcertApplication";
@@ -64,6 +70,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 + User.KEY_ID + "), FOREIGN KEY(artist_id) REFERENCES " + Artist.TABLE + "("
                 + Artist.KEY_ID + "));";
 
+
+        // All hardcoded data will be intered here
+
         String INSERT_TEST_VENUE1 = "INSERT INTO " + Venue.TABLE + " VALUES(1, 'Theatre of Living Artists', 'Philadelphia, PA');";
         String INSERT_TEST_VENUE2 = "INSERT INTO " + Venue.TABLE + " VALUES(2, 'The 930 Club', 'Washington, DC');";
         String INSERT_TEST_VENUE3 = "INSERT INTO " + Venue.TABLE + " VALUES(3, 'The Norva', 'Norfolk, VA');";
@@ -85,6 +94,8 @@ public class DBHandler extends SQLiteOpenHelper {
         String INSERT_TEST_ARTIST5 = "INSERT INTO " + Artist.TABLE + " VALUES(5, 'Red Hot Chili Peppers', 'Rock');";
         String INSERT_TEST_ARTIST6 = "INSERT INTO " + Artist.TABLE + " VALUES(6, 'Taylor Swift', 'Pop');";
 
+
+        // Commmands to execute SQL statements created above.
 
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_VENUE);
@@ -182,31 +193,20 @@ public class DBHandler extends SQLiteOpenHelper {
         return mCursor;
     }
 
-    public ArrayList<Artist> getAllFavoritedArtists(int userID) {
+    public ArrayList<String> getAllFavoritedArtists(int userID) {
         String selectQuery = "SELECT * FROM favorited_artists WHERE user_id = " + userID + ";";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor mCursor = db.rawQuery(selectQuery, null);
-        ArrayList<Artist> favoritedArtists = new ArrayList<>();
+        ArrayList<String> favoritedArtists = new ArrayList<>();
 
         if (mCursor.moveToFirst()) {
             do {
-                Artist artist = getArtist(Integer.parseInt(mCursor.getString(1)));
-                favoritedArtists.add(artist);
+                Artist artist = getArtist(Integer.parseInt(mCursor.getString(2)));
+                System.out.println(artist.getName());
+                favoritedArtists.add(artist.getName());
             } while (mCursor.moveToNext());
         }
         return favoritedArtists;
-    }
-
-
-    public int getNumberOfEvents() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String count = "SELECT count(*) FROM Event";
-        Cursor mcursor = db.rawQuery(count, null);
-        if (mcursor != null) {
-            mcursor.moveToFirst();
-        }
-        int icount = mcursor.getInt(0);
-        return icount;
     }
 
     // Class to insert user
@@ -233,25 +233,11 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put("user_id", userID);
         values.put("artist_id", artistID);
 
+        System.out.println(values);
+
         long favorited_artist_id = db.insert("favorited_artists", null, values);
         db.close();
         return (int) favorited_artist_id;
-    }
-
-    public void deleteUser(int id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(User.TABLE, User.KEY_ID + "= ?", new String[]{String.valueOf(id)});
-        db.close();
-    }
-
-    public void updateUser(User user) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(User.KEY_username, user.getUsername());
-        values.put(User.KEY_password, user.getPassword());
-
-        db.update(User.TABLE, values, User.KEY_ID + "= ?", new String[]{String.valueOf(user.getId())});
     }
 
     // Getting a single user

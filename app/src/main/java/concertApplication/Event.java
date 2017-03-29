@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Ewurafua on 2/23/2017.
+ *
+ * Class Description: The Event class is a model class that represents event objects.
  */
 
 public class Event {

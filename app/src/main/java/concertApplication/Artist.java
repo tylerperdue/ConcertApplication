@@ -2,6 +2,8 @@ package concertApplication;
 
 /**
  * Created by Ewurafua on 2/23/2017.
+ *
+ * Class Description: The Artist class is a model class that represents artist objects.
  */
 
 public class Artist {
