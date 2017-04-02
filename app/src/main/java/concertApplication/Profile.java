@@ -1,6 +1,8 @@
 package concertApplication;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -47,6 +49,8 @@ public class Profile extends AppCompatActivity{
         ArrayList<String> artistNames = db.getAllArtistsNames();
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, R.layout.spinner_layout, R.id.txt, artistNames);
         artistSpinner.setAdapter(adapter2);
+
+
         db.close();
 
         addArtistDialog = (TextView) findViewById(R.id.addArtistDialog);
@@ -59,7 +63,25 @@ public class Profile extends AppCompatActivity{
                 DBHandler db = new DBHandler(getBaseContext());
                 db.insertFavoritedArtist(loggedInUser, artist);
                 addArtistDialog.setText("Artist '" + artist + "' has been favorited.");
+                ArrayList<String> eventNames = db.getAllEventNames();
+
                 db.close();
+
+                AlertDialog.Builder a_builder = new AlertDialog.Builder(Profile.this);
+                a_builder.setMessage(artist+"'s next event is "+ eventNames.get(artistSpinner.getSelectedItemPosition()))
+                        .setCancelable(false)
+                        .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        });
+
+
+                AlertDialog alert = a_builder.create();
+                alert.setTitle("Event Reminder");
+                alert.show();
+
             }
         });
     }

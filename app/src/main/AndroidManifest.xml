@@ -30,6 +30,9 @@
         <activity android:name=".ArtistListDisplay" />
         <activity android:name=".Search" />
         <activity android:name=".Profile" />
+        <activity android:name=".EventDetail" />
+        <activity android:name=".VenueDetail" />
+        <activity android:name=".ArtistDetail" />
     </application>
 
 </manifest>

@@ -3,11 +3,14 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="50dp">
+    android:padding="50dp"
+    android:clickable="true" >
 
     <ListView
         android:id="@+id/events"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:clickable="true" />
 
 </LinearLayout>

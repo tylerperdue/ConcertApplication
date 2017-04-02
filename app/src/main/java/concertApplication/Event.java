@@ -1,5 +1,6 @@
 package concertApplication;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * Class Description: The Event class is a model class that represents event objects.
  */
 
-public class Event {
+public class Event implements Serializable {
     // Labels table name
     public static final String TABLE = "Event";
 
@@ -16,6 +17,7 @@ public class Event {
     public static final String KEY_ID = "_id";
     public static final String KEY_name = "name";
     public static final String KEY_date = "date";
+    public static final String KEY_description = "description";
     public static final String KEY_venue = "venue";
 
     // Properties to help us keep data
@@ -23,6 +25,7 @@ public class Event {
     private String name;
     private String venue;
     private String date;
+    private String description;
 
     // Getters and Setters
     public int getId() {
@@ -37,6 +40,7 @@ public class Event {
     public String getDate() {
         return date;
     }
+    public String getDescription() { return description; }
     public void setId(int id){
         this.id = id;
     }
@@ -49,5 +53,6 @@ public class Event {
     public void setDate(String date) {
         this.date = date;
     }
+    public void setDescription(String description) {this.description = description; }
 
 }

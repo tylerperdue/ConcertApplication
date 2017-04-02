@@ -22,7 +22,7 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 19;
 
     // Database Name
     private static final String DATABASE_NAME = "ConcertApplication";
@@ -45,12 +45,14 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_TABLE_VENUE = "CREATE TABLE " + Venue.TABLE + "( "
                 + Venue.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Venue.KEY_name + " TEXT, "
-                + Venue.KEY_address + " TEXT" + ");";
+                + Venue.KEY_address + " TEXT, "
+                + Venue.KEY_description + " TEXT);";
 
         String CREATE_TABLE_EVENT = "CREATE TABLE " + Event.TABLE + "( "
                 + Event.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Event.KEY_name + " TEXT, "
                 + Event.KEY_date + " DATE, "
+                + Event.KEY_description + " TEXT, "
                 + Event.KEY_venue + " INTEGER, "
                 + "FOREIGN KEY(" + Event.KEY_venue + ") REFERENCES " + Venue.TABLE +
                 "(" + Venue.KEY_ID + "));";
@@ -58,7 +60,8 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_TABLE_ARTIST = "CREATE TABLE " + Artist.TABLE + "( "
                 + Artist.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Artist.KEY_name + " TEXT, "
-                + Artist.KEY_genre + " TEXT" + ");";
+                + Artist.KEY_genre + " TEXT, "
+                + Artist.KEY_description + " TEXT);";
 
         String CREATE_TABLE_EVENT_ARTIST = "CREATE TABLE event_artist(event_id INTEGER, " +
                 "artist_id INTEGER, FOREIGN KEY(event_id) REFERENCES " + Event.TABLE + "("
@@ -73,26 +76,43 @@ public class DBHandler extends SQLiteOpenHelper {
 
         // All hardcoded data will be intered here
 
-        String INSERT_TEST_VENUE1 = "INSERT INTO " + Venue.TABLE + " VALUES(1, 'Theatre of Living Artists', 'Philadelphia, PA');";
-        String INSERT_TEST_VENUE2 = "INSERT INTO " + Venue.TABLE + " VALUES(2, 'The 930 Club', 'Washington, DC');";
-        String INSERT_TEST_VENUE3 = "INSERT INTO " + Venue.TABLE + " VALUES(3, 'The Norva', 'Norfolk, VA');";
-        String INSERT_TEST_VENUE4 = "INSERT INTO " + Venue.TABLE + " VALUES(4, 'Bryce Jordan Center', 'State College, PA');";
-        String INSERT_TEST_VENUE5 = "INSERT INTO " + Venue.TABLE + " VALUES(5, 'Jiffy Lube Live', 'Bristow, VA');";
-        String INSERT_TEST_VENUE6 = "INSERT INTO " + Venue.TABLE + " VALUES(6, 'Cameleon Club', 'Lancaster, PA');";
+        String INSERT_TEST_VENUE1 = "INSERT INTO " + Venue.TABLE + " VALUES(1, 'Theatre of Living Artists', 'Philadelphia, PA', 'The Theatre of Living Artists is a converted movie theatre with no seats dedicated to smaller musicians.');";
+        String INSERT_TEST_VENUE2 = "INSERT INTO " + Venue.TABLE + " VALUES(2, 'The 930 Club', 'Washington, DC', 'The 930 Club is a medium sized venue located in the nations capital.');";
+        String INSERT_TEST_VENUE3 = "INSERT INTO " + Venue.TABLE + " VALUES(3, 'The Norva', 'Norfolk, VA', 'The Norva is a performing theatre. Its name consists of an abbreviation for its location.');";
+        String INSERT_TEST_VENUE4 = "INSERT INTO " + Venue.TABLE + " VALUES(4, 'Bryce Jordan Center', 'State College, PA', 'The Bryce Jordan Center (BJC) is a sports arena for a majority of Penn States indoor sporting events. The BJC is also home to several big musicians year round.');";
+        String INSERT_TEST_VENUE5 = "INSERT INTO " + Venue.TABLE + " VALUES(5, 'Jiffy Lube Live', 'Bristow, VA', 'Jiffy Lube Live is a musical venue found in northern virginia. This venue hold concert events for larger artists for the DC/Maryland/Virginia area.');";
+        String INSERT_TEST_VENUE6 = "INSERT INTO " + Venue.TABLE + " VALUES(6, 'Cameleon Club', 'Lancaster, PA', 'The Cameleon Club is a smaller venue located in central Pennsylvania.');";
 
-        String INSERT_TEST_EVENT1 = "INSERT INTO " + Event.TABLE + " VALUES(1, 'Beyonce Tour', '2017-8-23', 1);";
-        String INSERT_TEST_EVENT2 = "INSERT INTO " + Event.TABLE + " VALUES(2, 'Drake Tour', '2017-4-10', 2);";
-        String INSERT_TEST_EVENT3 = "INSERT INTO " + Event.TABLE + " VALUES(3, 'Lalapolooza', '2017-5-5', 3);";
-        String INSERT_TEST_EVENT4 = "INSERT INTO " + Event.TABLE + " VALUES(4, 'Moving On', '2017-5-9', 4);";
-        String INSERT_TEST_EVENT5 = "INSERT INTO " + Event.TABLE + " VALUES(5, 'Firefly', '2017-11-17', 5);";
-        String INSERT_TEST_EVENT6 = "INSERT INTO " + Event.TABLE + " VALUES(6, 'Superbowl', '2017-10-14', 6);";
+        String INSERT_TEST_EVENT1 = "INSERT INTO " + Event.TABLE + " VALUES(1, 'Lemonade Tour', '2017-8-23','Lemonade Tour is Beyonces nationwide tour where she travels the country promoting her most recent album.', 1);";
+        String INSERT_TEST_EVENT2 = "INSERT INTO " + Event.TABLE + " VALUES(2, 'Views Tour', '2017-4-10', 'Drakes newest album Views is apart of this nationwide tour primarily viewed by stadium audiences.', 2);";
+        String INSERT_TEST_EVENT3 = "INSERT INTO " + Event.TABLE + " VALUES(3, 'Lalapolooza', '2017-5-5','Lalapolooza is a musical festival in Chicago, IL. It is one of the more dominant and popular musical festivals in the United States and accomodates hundreds of different artists.', 3);";
+        String INSERT_TEST_EVENT4 = "INSERT INTO " + Event.TABLE + " VALUES(4, 'Moving On', '2017-5-9', 'Moving On is a concert event promoted and setup by the Student Programming Association at Penn State. The concert is performed at the end of the spring semester to reward students for their work throughout the year.', 4);";
+        String INSERT_TEST_EVENT5 = "INSERT INTO " + Event.TABLE + " VALUES(5, 'Firefly', '2017-11-17', 'Firefly is a musical festival in Dover, Delaware. It is one of the more dominant and popular musical festivals in the United States.', 5);";
+        String INSERT_TEST_EVENT6 = "INSERT INTO " + Event.TABLE + " VALUES(6, 'Superbowl', '2017-10-14','The Superbowl is a sporting event featuring the best two teams in the NFL. Included with the event, is a halftime concert performed by one of the top pop artists in the industry.', 6);";
 
-        String INSERT_TEST_ARTIST1 = "INSERT INTO " + Artist.TABLE + " VALUES(1, 'Beyonce', 'Pop');";
-        String INSERT_TEST_ARTIST2 = "INSERT INTO " + Artist.TABLE + " VALUES(2, 'Drake', 'Rap/Hip-Hop');";
-        String INSERT_TEST_ARTIST3 = "INSERT INTO " + Artist.TABLE + " VALUES(3, 'Cold Play', 'Alternative');";
-        String INSERT_TEST_ARTIST4 = "INSERT INTO " + Artist.TABLE + " VALUES(4, 'Migos', 'Rap/Hip-Hop');";
-        String INSERT_TEST_ARTIST5 = "INSERT INTO " + Artist.TABLE + " VALUES(5, 'Red Hot Chili Peppers', 'Rock');";
-        String INSERT_TEST_ARTIST6 = "INSERT INTO " + Artist.TABLE + " VALUES(6, 'Taylor Swift', 'Pop');";
+        String INSERT_TEST_ARTIST1 = "INSERT INTO " + Artist.TABLE + " VALUES(1, 'Beyonce', 'Pop', 'Beyonce is an American singer, songwriter, and actress born and raised in Houston, Texas.');";
+        String INSERT_TEST_ARTIST2 = "INSERT INTO " + Artist.TABLE + " VALUES(2, 'Drake', 'Rap/Hip-Hop', 'Drake is a Canadian rapper, singer, songwriter, record producer, and actor.');";
+        String INSERT_TEST_ARTIST3 = "INSERT INTO " + Artist.TABLE + " VALUES(3, 'Cold Play', 'Alternative', 'Coldplay are a British rock band formed in 1996 by lead vocalist and keyboardist Chris Martin and lead guitarist Jonny Buckland at University College London (UCL).');";
+        String INSERT_TEST_ARTIST4 = "INSERT INTO " + Artist.TABLE + " VALUES(4, 'Migos', 'Rap/Hip-Hop', 'Migos is an American hip hop group formed in 2009, from Lawrenceville, Georgia. The group is composed of three rappers, known by their stage names Quavo, Takeoff and Offset.');";
+        String INSERT_TEST_ARTIST5 = "INSERT INTO " + Artist.TABLE + " VALUES(5, 'Red Hot Chili Peppers', 'Rock', 'Red Hot Chili Peppers, also sometimes shortened to The Chili Peppers or abbreviated as RHCP, are an American funk rock band formed in Los Angeles in 1983.');";
+        String INSERT_TEST_ARTIST6 = "INSERT INTO " + Artist.TABLE + " VALUES(6, 'Taylor Swift', 'Pop', 'Taylor Alison Swift (born December 13, 1989) is an American singer-songwriter. One of the most popular contemporary female recording artists, she is known for narrative songs about her personal life, which has received much media attention.');";
+
+        String INSERT_EVENT_ARTIST1 = "INSERT INTO event_artist VALUES(1, 1);";
+        String INSERT_EVENT_ARTIST2 = "INSERT INTO event_artist VALUES(2, 2);";
+        String INSERT_EVENT_ARTIST3 = "INSERT INTO event_artist VALUES(3, 1);";
+        String INSERT_EVENT_ARTIST4 = "INSERT INTO event_artist VALUES(3, 2);";
+        String INSERT_EVENT_ARTIST5 = "INSERT INTO event_artist VALUES(3, 3);";
+        String INSERT_EVENT_ARTIST6 = "INSERT INTO event_artist VALUES(3, 4);";
+        String INSERT_EVENT_ARTIST7 = "INSERT INTO event_artist VALUES(3, 5);";
+        String INSERT_EVENT_ARTIST8 = "INSERT INTO event_artist VALUES(4, 1);";
+        String INSERT_EVENT_ARTIST9 = "INSERT INTO event_artist VALUES(4, 2);";
+        String INSERT_EVENT_ARTIST10 = "INSERT INTO event_artist VALUES(4, 3);";
+        String INSERT_EVENT_ARTIST11 = "INSERT INTO event_artist VALUES(4, 4);";
+        String INSERT_EVENT_ARTIST12 = "INSERT INTO event_artist VALUES(4, 5);";
+        String INSERT_EVENT_ARTIST13 = "INSERT INTO event_artist VALUES(5, 1);";
+        String INSERT_EVENT_ARTIST14 = "INSERT INTO event_artist VALUES(5, 2);";
+        String INSERT_EVENT_ARTIST15 = "INSERT INTO event_artist VALUES(5, 3);";
+        String INSERT_EVENT_ARTIST16 = "INSERT INTO event_artist VALUES(6, 6);";
 
 
         // Commmands to execute SQL statements created above.
@@ -121,6 +141,22 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(INSERT_TEST_ARTIST4);
         db.execSQL(INSERT_TEST_ARTIST5);
         db.execSQL(INSERT_TEST_ARTIST6);
+        db.execSQL(INSERT_EVENT_ARTIST1);
+        db.execSQL(INSERT_EVENT_ARTIST2);
+        db.execSQL(INSERT_EVENT_ARTIST3);
+        db.execSQL(INSERT_EVENT_ARTIST4);
+        db.execSQL(INSERT_EVENT_ARTIST5);
+        db.execSQL(INSERT_EVENT_ARTIST6);
+        db.execSQL(INSERT_EVENT_ARTIST7);
+        db.execSQL(INSERT_EVENT_ARTIST8);
+        db.execSQL(INSERT_EVENT_ARTIST9);
+        db.execSQL(INSERT_EVENT_ARTIST10);
+        db.execSQL(INSERT_EVENT_ARTIST11);
+        db.execSQL(INSERT_EVENT_ARTIST12);
+        db.execSQL(INSERT_EVENT_ARTIST13);
+        db.execSQL(INSERT_EVENT_ARTIST14);
+        db.execSQL(INSERT_EVENT_ARTIST15);
+        db.execSQL(INSERT_EVENT_ARTIST16);
 
     }
 
@@ -140,19 +176,19 @@ public class DBHandler extends SQLiteOpenHelper {
 
     // Class to return Event table column names
     public String[] getEventColumns() {
-        String [] columns = {Event.KEY_ID, Event.KEY_name, Event.KEY_venue, Event.KEY_date};
+        String [] columns = {Event.KEY_ID, Event.KEY_name, Event.KEY_venue, Event.KEY_date, Event.KEY_description};
         return columns;
     }
 
     // Class to return Venue table column names
     public String[] getVenueColumns() {
-        String [] columns = {Venue.KEY_ID, Venue.KEY_name, Venue.KEY_address};
+        String [] columns = {Venue.KEY_ID, Venue.KEY_name, Venue.KEY_address, Venue.KEY_description};
         return columns;
     }
 
     // Class to return Artist table column names
     public String[] getArtistColumns() {
-        String [] columns = {Artist.KEY_ID, Artist.KEY_name, Artist.KEY_genre};
+        String [] columns = {Artist.KEY_ID, Artist.KEY_name, Artist.KEY_genre, Artist.KEY_description};
         return columns;
     }
 
@@ -202,7 +238,6 @@ public class DBHandler extends SQLiteOpenHelper {
         if (mCursor.moveToFirst()) {
             do {
                 Artist artist = getArtist(Integer.parseInt(mCursor.getString(2)));
-                System.out.println(artist.getName());
                 favoritedArtists.add(artist.getName());
             } while (mCursor.moveToNext());
         }
@@ -268,6 +303,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 artist.setId(Integer.parseInt(cursor.getString(0)));
                 artist.setName(cursor.getString(1));
                 artist.setGenre(cursor.getString(2));
+                artist.setDescription(cursor.getString(3));
             } while (cursor.moveToNext());
         }
         return artist;
@@ -287,6 +323,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         return artistID;
     }
+
 
     // Getting All Users
     public List<User> getAllUsers() {
@@ -331,6 +368,25 @@ public class DBHandler extends SQLiteOpenHelper {
         return artistNameList;
     }
 
+    public ArrayList<String> getAllEventNames() {
+        ArrayList<String> eventNameList = new ArrayList<>();
+        //Select All Query
+        String selectQuery = "Select * FROM " + Event.TABLE;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                String eventName = cursor.getString(1);
+                eventNameList.add(eventName);
+            } while (cursor.moveToNext());
+        }
+        return eventNameList;
+    }
+
+
     public Artist getArtist(String artistName){
         String selectQuery = ("SELECT * FROM " + Artist.TABLE + " WHERE " + Artist.KEY_name + " LIKE '%" + artistName + "%';");
         SQLiteDatabase db = this.getWritableDatabase();
@@ -342,6 +398,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 artist.setId(Integer.parseInt(cursor.getString(0)));
                 artist.setName(cursor.getString(1));
                 artist.setGenre(cursor.getString(2));
+                artist.setDescription(cursor.getString(3));
             } while (cursor.moveToNext());
         }
         return artist;
@@ -358,6 +415,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 venue.setId(Integer.parseInt(cursor.getString(0)));
                 venue.setName(cursor.getString(1));
                 venue.setAddress(cursor.getString(2));
+                venue.setDescription(cursor.getString(3));
             } while (cursor.moveToNext());
         }
         return venue;
@@ -376,9 +434,76 @@ public class DBHandler extends SQLiteOpenHelper {
                 event.setId(Integer.parseInt(cursor.getString(0)));
                 event.setName(cursor.getString(1));
                 event.setDate(cursor.getString(2));
+                event.setDescription(cursor.getString(3));
                 event.setVenue(cursor.getString(3));
             } while (cursor.moveToNext());
         }
         return event;
+    }
+
+    public Artist getArtistWithID(int id) {
+        String selectQuery = "SELECT * FROM " + Artist.TABLE + " WHERE _id = " + id + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        Artist artist = new Artist();
+        if(cursor.moveToFirst()){
+            do{
+                artist = new Artist();
+                artist.setId(Integer.parseInt(cursor.getString(0)));
+                artist.setName(cursor.getString(1));
+                artist.setGenre(cursor.getString(2));
+                artist.setDescription(cursor.getString(3));
+            }while(cursor.moveToNext());
+        }
+        return artist;
+    }
+
+    public Event getEventWithID(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT Event._id, Event.name, Event.date, Event.description, Venue.name AS venue " +
+                "FROM Event INNER JOIN Venue ON Event.venue = Venue._id WHERE Event._id = " + id + ";", null, null);
+        Event event = new Event();
+        if(cursor.moveToFirst()){
+            do{
+                event = new Event();
+                event.setId(Integer.parseInt(cursor.getString(0)));
+                event.setName(cursor.getString(1));
+                event.setDate(cursor.getString(2));
+                event.setDescription(cursor.getString(3));
+                event.setVenue(cursor.getString(4));
+            }while(cursor.moveToNext());
+        }
+        return event;
+    }
+
+    public Venue getVenueWithID(int id) {
+        String selectQuery = "SELECT * FROM " + Venue.TABLE + " WHERE _id = " + id + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        Venue venue = new Venue();
+        if(cursor.moveToFirst()){
+            do{
+                venue = new Venue();
+                venue.setId(Integer.parseInt(cursor.getString(0)));
+                venue.setName(cursor.getString(1));
+                venue.setAddress(cursor.getString(2));
+                venue.setDescription(cursor.getString(3));
+            }while(cursor.moveToNext());
+        }
+        return venue;
+    }
+
+    public ArrayList<String> getLineup(int id) {
+        String selectQuery = "SELECT * FROM event_artist WHERE event_id = " + id + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<String> lineup = new ArrayList<>();
+        if(cursor.moveToFirst()){
+            do{
+                Artist artist = getArtist(Integer.parseInt(cursor.getString(1)));
+                lineup.add(artist.getName());
+            }while(cursor.moveToNext());
+        }
+        return lineup;
     }
 }
