@@ -10,79 +10,120 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <TextView
-        android:id="@+id/addArtistDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.10"
-        android:padding="5dp"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent" />
 
-    <ImageView
-        android:id="@+id/imageButton"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="0.10"
-        android:background="@android:color/transparent"
-        app:srcCompat="@mipmap/user"
-        android:layout_margin="5dp" />
-
-    <TextView
-        android:id="@+id/userTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="20dp"
-        android:layout_weight="0.02"
-        android:text="User Profile"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/artistTitle"
-        android:layout_width="match_parent"
-        android:layout_weight="0.02"
-        android:fontFamily=""
-        android:text="Favorite Artists"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:layout_height="wrap_content" />
-
-    <ListView
-        android:id="@+id/favArtists"
-        android:layout_width="wrap_content"
-        android:layout_height="125dp" />
-
-    <TextView
-        android:id="@+id/artistTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_weight="0.10"
-        android:text="Select an Artist.."
-        android:textAlignment="center" />
+        android:background="@color/cardview_light_background"
+        app:cardElevation="7dp">
 
-    <Spinner
-        android:id="@+id/artistSpinner"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addArtistDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10"
+                android:padding="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent" />
+
+            <ImageView
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="5dp"
+                android:layout_weight="0.10"
+                android:background="@android:color/transparent"
+                app:srcCompat="@mipmap/ic_person_outline_black_48dp" />
+
+            <TextView
+                android:id="@+id/userTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_weight="0.10"
+                android:text="User Profile"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
+        android:layout_height="355dp"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0.10"
-        android:gravity="center_vertical|center_horizontal" />
+        app:cardElevation="7dp">
 
-    <Button
-        android:id="@+id/addFavArtist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0.02"
-        android:onClick="addFav"
-        android:text="Add" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/artistTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.00"
+                android:fontFamily=""
+                android:paddingTop="5dp"
+                android:text="Favorite Artists"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
+
+            <ListView
+                android:id="@+id/favArtists"
+                android:layout_width="match_parent"
+                android:layout_height="91dp"
+                android:layout_weight="0.85" />
+
+            <TextView
+                android:id="@+id/artistTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.06"
+                android:padding="10dp"
+                android:text="Select an Artist.."
+                android:textAlignment="center"
+                android:textColor="@android:color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Spinner
+                    android:id="@+id/artistSpinner"
+                    android:layout_width="165dp"
+                    android:layout_height="49dp"
+                    android:layout_weight="0.95"
+                    android:gravity="center_vertical|center_horizontal" />
+
+                <Button
+                    android:id="@+id/addFavArtist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="0dp"
+                    android:onClick="addFav"
+                    android:text="Add" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

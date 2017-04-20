@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * Class Description: The Profile class is the main view for the user profile and its functions.
  */
 
-public class Profile extends AppCompatActivity{
+public class Profile extends AppCompatActivity {
 
     private Spinner artistSpinner;
     private String artist;

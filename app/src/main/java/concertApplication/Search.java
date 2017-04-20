@@ -1,11 +1,14 @@
 package concertApplication;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 public class Search extends AppCompatActivity {

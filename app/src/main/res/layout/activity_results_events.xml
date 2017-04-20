@@ -6,6 +6,7 @@
     android:padding="50dp"
     android:clickable="true" >
 
+
     <ListView
         android:id="@+id/events"
         android:layout_width="match_parent"

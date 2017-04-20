@@ -22,7 +22,7 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 19;
+    private static final int DATABASE_VERSION = 21;
 
     // Database Name
     private static final String DATABASE_NAME = "ConcertApplication";
@@ -51,7 +51,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_TABLE_EVENT = "CREATE TABLE " + Event.TABLE + "( "
                 + Event.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Event.KEY_name + " TEXT, "
-                + Event.KEY_date + " DATE, "
+                + Event.KEY_date + " TEXT, "
                 + Event.KEY_description + " TEXT, "
                 + Event.KEY_venue + " INTEGER, "
                 + "FOREIGN KEY(" + Event.KEY_venue + ") REFERENCES " + Venue.TABLE +
@@ -83,12 +83,12 @@ public class DBHandler extends SQLiteOpenHelper {
         String INSERT_TEST_VENUE5 = "INSERT INTO " + Venue.TABLE + " VALUES(5, 'Jiffy Lube Live', 'Bristow, VA', 'Jiffy Lube Live is a musical venue found in northern virginia. This venue hold concert events for larger artists for the DC/Maryland/Virginia area.');";
         String INSERT_TEST_VENUE6 = "INSERT INTO " + Venue.TABLE + " VALUES(6, 'Cameleon Club', 'Lancaster, PA', 'The Cameleon Club is a smaller venue located in central Pennsylvania.');";
 
-        String INSERT_TEST_EVENT1 = "INSERT INTO " + Event.TABLE + " VALUES(1, 'Lemonade Tour', '2017-8-23','Lemonade Tour is Beyonces nationwide tour where she travels the country promoting her most recent album.', 1);";
-        String INSERT_TEST_EVENT2 = "INSERT INTO " + Event.TABLE + " VALUES(2, 'Views Tour', '2017-4-10', 'Drakes newest album Views is apart of this nationwide tour primarily viewed by stadium audiences.', 2);";
-        String INSERT_TEST_EVENT3 = "INSERT INTO " + Event.TABLE + " VALUES(3, 'Lalapolooza', '2017-5-5','Lalapolooza is a musical festival in Chicago, IL. It is one of the more dominant and popular musical festivals in the United States and accomodates hundreds of different artists.', 3);";
-        String INSERT_TEST_EVENT4 = "INSERT INTO " + Event.TABLE + " VALUES(4, 'Moving On', '2017-5-9', 'Moving On is a concert event promoted and setup by the Student Programming Association at Penn State. The concert is performed at the end of the spring semester to reward students for their work throughout the year.', 4);";
-        String INSERT_TEST_EVENT5 = "INSERT INTO " + Event.TABLE + " VALUES(5, 'Firefly', '2017-11-17', 'Firefly is a musical festival in Dover, Delaware. It is one of the more dominant and popular musical festivals in the United States.', 5);";
-        String INSERT_TEST_EVENT6 = "INSERT INTO " + Event.TABLE + " VALUES(6, 'Superbowl', '2017-10-14','The Superbowl is a sporting event featuring the best two teams in the NFL. Included with the event, is a halftime concert performed by one of the top pop artists in the industry.', 6);";
+        String INSERT_TEST_EVENT1 = "INSERT INTO " + Event.TABLE + " VALUES(1, 'Lemonade Tour', 'August 23, 2017','Lemonade Tour is Beyonces nationwide tour where she travels the country promoting her most recent album.', 1);";
+        String INSERT_TEST_EVENT2 = "INSERT INTO " + Event.TABLE + " VALUES(2, 'Views Tour', 'April 10, 2017', 'Drakes newest album Views is apart of this nationwide tour primarily viewed by stadium audiences.', 2);";
+        String INSERT_TEST_EVENT3 = "INSERT INTO " + Event.TABLE + " VALUES(3, 'Lalapolooza', 'May 5, 2017','Lalapolooza is a musical festival in Chicago, IL. It is one of the more dominant and popular musical festivals in the United States and accomodates hundreds of different artists.', 3);";
+        String INSERT_TEST_EVENT4 = "INSERT INTO " + Event.TABLE + " VALUES(4, 'Moving On', 'May 9, 2017', 'Moving On is a concert event promoted and setup by the Student Programming Association at Penn State. The concert is performed at the end of the spring semester to reward students for their work throughout the year.', 4);";
+        String INSERT_TEST_EVENT5 = "INSERT INTO " + Event.TABLE + " VALUES(5, 'Firefly', 'November 17, 2017', 'Firefly is a musical festival in Dover, Delaware. It is one of the more dominant and popular musical festivals in the United States.', 5);";
+        String INSERT_TEST_EVENT6 = "INSERT INTO " + Event.TABLE + " VALUES(6, 'Superbowl', 'October, 10, 2017','The Superbowl is a sporting event featuring the best two teams in the NFL. Included with the event, is a halftime concert performed by one of the top pop artists in the industry.', 6);";
 
         String INSERT_TEST_ARTIST1 = "INSERT INTO " + Artist.TABLE + " VALUES(1, 'Beyonce', 'Pop', 'Beyonce is an American singer, songwriter, and actress born and raised in Houston, Texas.');";
         String INSERT_TEST_ARTIST2 = "INSERT INTO " + Artist.TABLE + " VALUES(2, 'Drake', 'Rap/Hip-Hop', 'Drake is a Canadian rapper, singer, songwriter, record producer, and actor.');";
@@ -505,5 +505,37 @@ public class DBHandler extends SQLiteOpenHelper {
             }while(cursor.moveToNext());
         }
         return lineup;
+    }
+
+    public ArrayList<String> getEventsArtistIsPlayingAt(int id) {
+        String selectQuery = "SELECT * FROM event_artist WHERE artist_id = " + id + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        ArrayList<String> events = new ArrayList<>();
+        if(cursor.moveToFirst()){
+            do{
+                Event event = getEventWithID(Integer.parseInt(cursor.getString(0)));
+                events.add(event.getName());
+            }while(cursor.moveToNext());
+        }
+        return events;
+    }
+
+    public Artist getArtistWithArtistPositionAndEventID(int event_id, int artist_position) {
+        String selectQuery = "SELECT * FROM event_artist WHERE event_id = " + event_id + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToPosition(artist_position);
+        Artist artist = getArtistWithID(Integer.parseInt(cursor.getString(1)));
+        return artist;
+    }
+
+    public Event getEventWithEventPositionAndArtistID(int artist_id, int event_position) {
+        String selectQuery = "SELECT * FROM event_artist WHERE artist_id = " + artist_id + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToPosition(event_position);
+        Event event = getEventWithID(Integer.parseInt(cursor.getString(0)));
+        return event;
     }
 }

@@ -1,57 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/eventDetailNameTxt"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingTop="20dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="36sp" />
+        android:layout_margin="20dp"
+        app:cardElevation="7dp">
 
-    <TextView
-        android:id="@+id/eventDetailVenueTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/eventDetailDateTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/eventDetailNameTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="20dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="36sp" />
 
-    <TextView
-        android:id="@+id/eventDetailDescriptionTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="10dp"
-        android:text="TextView"
-        android:textAlignment="center" />
+            <TextView
+                android:id="@+id/eventDetailVenueTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:text="Artist(s) Performing:"
-        android:textAlignment="center" />
+            <TextView
+                android:id="@+id/eventDetailDateTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
 
-    <ListView
-        android:id="@+id/eventDetailLineupListview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp" />
+            <TextView
+                android:id="@+id/eventDetailDescriptionTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:text="TextView"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30dp"
+                android:text="Artist(s) Performing:"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent" />
+
+            <ListView
+                android:id="@+id/eventDetailLineupListview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>
