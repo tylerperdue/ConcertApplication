@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 public class Navigation extends AppCompatActivity {
 
@@ -23,6 +23,43 @@ public class Navigation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+
+
+        final ImageButton eventButton = (ImageButton) findViewById(R.id.eventsButton);
+        eventButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openEventActivity();
+            }
+        });
+        final ImageButton venueButton = (ImageButton) findViewById(R.id.venuesButton);
+        venueButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openVenueActivity();
+            }
+        });
+        final ImageButton artistButton = (ImageButton) findViewById(R.id.artistsButton);
+        artistButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openArtistActivity();
+            }
+        });
+        final ImageButton searchButton = (ImageButton) findViewById(R.id.searchMenuButton);
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openSearchActivity();
+            }
+        });
+        final ImageButton userProfileButton = (ImageButton) findViewById(R.id.userProfileButton);
+        userProfileButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openProfileActivity();
+            }
+        });
 
         mToolbar = (Toolbar) findViewById(R.id.navigation_action);
         setSupportActionBar(mToolbar);

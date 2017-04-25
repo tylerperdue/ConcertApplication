@@ -1,10 +1,12 @@
 package concertApplication;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -68,7 +70,7 @@ public class Profile extends AppCompatActivity {
                 db.close();
 
                 AlertDialog.Builder a_builder = new AlertDialog.Builder(Profile.this);
-                a_builder.setMessage(artist+"'s next event is "+ eventNames.get(artistSpinner.getSelectedItemPosition()))
+                a_builder.setMessage(artist+"'s next event is "+ eventNames.get(artistSpinner.getSelectedItemPosition()) + ".")
                         .setCancelable(false)
                         .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
                             @Override
@@ -82,6 +84,18 @@ public class Profile extends AppCompatActivity {
                 alert.setTitle("Event Reminder");
                 alert.show();
 
+            }
+        });
+
+        favoritedArtists.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                DBHandler db = new DBHandler(getBaseContext());
+                Artist artist = db.getArtistWithArtistPositionAndUserID(loggedInUser, position);
+                Intent intent = new Intent(Profile.this, ArtistDetail.class);
+                intent.putExtra("Artist", artist);
+                startActivity(intent);
+                db.close();
             }
         });
     }

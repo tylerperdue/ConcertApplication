@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,25 +16,295 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/navigation_name"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:text="Concertpedia"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccent"
-            android:textSize="30sp" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/navigation_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="An encylopedia of information relating to concert events, artists, and venues."
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp">
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="145dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+
+                                    <ImageButton
+                                        android:id="@+id/searchMenuButton"
+                                        android:layout_width="144dp"
+                                        android:layout_height="144dp"
+                                        android:layout_alignParentTop="true"
+                                        android:background="@color/colorAccent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@mipmap/ic_search" />
+
+                                    <TextView
+                                        android:id="@+id/search"
+                                        android:layout_width="145dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/searchMenuButton"
+                                        android:maxLines="3"
+                                        android:padding="8dp"
+                                        android:text="Search"
+                                        android:textAlignment="center"
+                                        android:textColor="#222"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+                            </android.support.v7.widget.CardView>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="145dp"
+                                android:layout_height="wrap_content">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageButton
+                                        android:id="@+id/userProfileButton"
+                                        android:layout_width="144dp"
+                                        android:layout_height="144dp"
+                                        android:layout_alignParentTop="true"
+                                        android:background="@color/colorAccent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@mipmap/ic_account_box" />
+
+
+                                    <TextView
+                                        android:id="@+id/userProfile"
+                                        android:layout_width="145dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/userProfileButton"
+                                        android:maxLines="3"
+                                        android:padding="8dp"
+                                        android:text="User Profile"
+                                        android:textAlignment="center"
+                                        android:textColor="#222"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+
+
+                            </android.support.v7.widget.CardView>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp">
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="145dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+
+                                    <ImageButton
+                                        android:id="@+id/eventsButton"
+                                        android:layout_width="144dp"
+                                        android:layout_height="144dp"
+                                        android:layout_alignParentTop="true"
+                                        android:background="@color/colorAccent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@mipmap/ic_event" />
+
+                                    <TextView
+                                        android:id="@+id/eventsTextView"
+                                        android:layout_width="145dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/eventsButton"
+                                        android:maxLines="3"
+                                        android:padding="8dp"
+                                        android:text="Events"
+                                        android:textAlignment="center"
+                                        android:textColor="#222"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+                            </android.support.v7.widget.CardView>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal">
+
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="145dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+
+                                    <ImageButton
+                                        android:id="@+id/artistsButton"
+                                        android:layout_width="144dp"
+                                        android:layout_height="144dp"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_alignParentTop="true"
+                                        android:background="@color/colorAccent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@mipmap/ic_artist" />
+
+                                    <TextView
+                                        android:id="@+id/artistsTextView"
+                                        android:layout_width="145dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/artistsButton"
+                                        android:maxLines="3"
+                                        android:padding="8dp"
+                                        android:text="Artists"
+                                        android:textAlignment="center"
+                                        android:textColor="#222"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+                            </android.support.v7.widget.CardView>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp">
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="145dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageButton
+                                        android:id="@+id/venuesButton"
+                                        android:layout_width="144dp"
+                                        android:layout_height="144dp"
+                                        android:layout_alignParentTop="true"
+                                        android:background="@color/colorAccent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@mipmap/ic_venue" />
+
+                                    <TextView
+                                        android:id="@+id/venuesTextView"
+                                        android:layout_width="145dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/venuesButton"
+                                        android:maxLines="3"
+                                        android:padding="8dp"
+                                        android:text="Venues"
+                                        android:textAlignment="center"
+                                        android:textColor="#222"
+                                        android:textSize="22dp"
+                                        android:textStyle="bold" />
+
+
+                                </RelativeLayout>
+                            </android.support.v7.widget.CardView>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
 
     </LinearLayout>
 

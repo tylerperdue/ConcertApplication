@@ -22,7 +22,7 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 21;
+    private static final int DATABASE_VERSION = 22;
 
     // Database Name
     private static final String DATABASE_NAME = "ConcertApplication";
@@ -94,7 +94,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String INSERT_TEST_ARTIST2 = "INSERT INTO " + Artist.TABLE + " VALUES(2, 'Drake', 'Rap/Hip-Hop', 'Drake is a Canadian rapper, singer, songwriter, record producer, and actor.');";
         String INSERT_TEST_ARTIST3 = "INSERT INTO " + Artist.TABLE + " VALUES(3, 'Cold Play', 'Alternative', 'Coldplay are a British rock band formed in 1996 by lead vocalist and keyboardist Chris Martin and lead guitarist Jonny Buckland at University College London (UCL).');";
         String INSERT_TEST_ARTIST4 = "INSERT INTO " + Artist.TABLE + " VALUES(4, 'Migos', 'Rap/Hip-Hop', 'Migos is an American hip hop group formed in 2009, from Lawrenceville, Georgia. The group is composed of three rappers, known by their stage names Quavo, Takeoff and Offset.');";
-        String INSERT_TEST_ARTIST5 = "INSERT INTO " + Artist.TABLE + " VALUES(5, 'Red Hot Chili Peppers', 'Rock', 'Red Hot Chili Peppers, also sometimes shortened to The Chili Peppers or abbreviated as RHCP, are an American funk rock band formed in Los Angeles in 1983.');";
+        String INSERT_TEST_ARTIST5 = "INSERT INTO " + Artist.TABLE + " VALUES(5, 'The Red Hot Chili Peppers', 'Rock', 'Red Hot Chili Peppers, also sometimes shortened to The Chili Peppers or abbreviated as RHCP, are an American funk rock band formed in Los Angeles in 1983.');";
         String INSERT_TEST_ARTIST6 = "INSERT INTO " + Artist.TABLE + " VALUES(6, 'Taylor Swift', 'Pop', 'Taylor Alison Swift (born December 13, 1989) is an American singer-songwriter. One of the most popular contemporary female recording artists, she is known for narrative songs about her personal life, which has received much media attention.');";
 
         String INSERT_EVENT_ARTIST1 = "INSERT INTO event_artist VALUES(1, 1);";
@@ -537,5 +537,14 @@ public class DBHandler extends SQLiteOpenHelper {
         cursor.moveToPosition(event_position);
         Event event = getEventWithID(Integer.parseInt(cursor.getString(0)));
         return event;
+    }
+
+    public Artist getArtistWithArtistPositionAndUserID(int user_id, int artist_position) {
+        String selectQuery = "SELECT * FROM favorited_artists WHERE user_id = " + user_id + ";";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToPosition(artist_position);
+        Artist artist = getArtistWithID(Integer.parseInt(cursor.getString(2)));
+        return artist;
     }
 }

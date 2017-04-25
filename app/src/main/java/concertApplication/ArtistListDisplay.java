@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.support.v7.app.AppCompatActivity;
 
 /*
  * Created by Ewurafua on 2/23/2017.

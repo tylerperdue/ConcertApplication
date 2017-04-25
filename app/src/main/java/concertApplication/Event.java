@@ -1,7 +1,6 @@
 package concertApplication;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by Ewurafua on 2/23/2017.
